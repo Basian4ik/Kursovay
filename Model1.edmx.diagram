@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bc31b374e2214e31a4559dc0441e6bbd" Name="Diagram1">
+        <EntityTypeShape EntityType="ПоликлиникаModel.Врачи" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ПоликлиникаModel.История_болезней" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ПоликлиникаModel.Лист_лечения" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ПоликлиникаModel.Операции" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ПоликлиникаModel.Пациенты" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ПоликлиникаModel.FK__История_б__ID_вр__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="ПоликлиникаModel.FK__Операции__ID_вра__0D7A0286" ManuallyRouted="false" />
+        <AssociationConnector Association="ПоликлиникаModel.FK__История_б__ID_па__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="ПоликлиникаModel.FK__Лист_лече__ID_ис__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="ПоликлиникаModel.FK__Операции__ID_ист__0C85DE4D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,131 @@
+﻿<Page x:Class="Поликлиника.ClientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Поликлиника"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Клиенты" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Блок авторизации (слева) -->
+        <StackPanel Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                    Orientation="Vertical" Margin="10" Grid.ColumnSpan="2">
+            <TextBlock Text="Вы авторизованы как:" FontSize="14" HorizontalAlignment="Left"/>
+            <TextBlock Name="FIOTB" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left"/>
+            <TextBlock Text="Роль:" FontSize="14" HorizontalAlignment="Left"/>
+            <TextBlock Name="RoleTB" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left"/>
+        </StackPanel>
+
+        <!-- Кнопка добавления (справа, верхняя строка) -->
+        <Button Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" 
+                Content="Добавить клиента" 
+                FontSize="14" 
+                Width="160" 
+                Height="32"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                Margin="10"
+                Click="AddPatient_Click"/>
+
+        <!-- Блок поиска -->
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="5"
+        Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock Text="Поиск клиента" TextAlignment="Center"
+    Width="250" FontSize="20"></TextBlock>
+
+            <TextBox Name="TBoxSearch"  Width="250" FontSize="15" ></TextBox>
+        </StackPanel>
+
+        <!-- Блок сортировки -->
+        <StackPanel Grid.Column="2" Grid.Row="1" Margin="5"
+Orientation="Vertical" HorizontalAlignment="Center">
+            <RadioButton Name="RButtonUp"  Content="По дате (новые)" GroupName="Sort"
+Width="300" FontSize="20" VerticalContentAlignment="Center"></RadioButton>
+
+            <RadioButton Name="RButtonDown" Content="По дате (старые)" GroupName="Sort"
+Width="300" FontSize="20" VerticalContentAlignment="Center"></RadioButton>
+        </StackPanel>
+
+        <!-- Блок фильтрации -->
+        <StackPanel Grid.Column="3" Grid.Row="1" Margin="5"
+        Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock Text="Фильтрация" TextAlignment="Center" Width="300" FontSize="20"></TextBlock>
+
+            <ComboBox Name="ComboType"   FontSize="15" Width="200">
+                <TextBlock>Все виды</TextBlock>
+                <TextBlock>Амбулаторное</TextBlock>
+                <TextBlock>Стационарное</TextBlock>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Список клиентов -->
+        <ListView Name="ClientListView" Grid.Row="2" Grid.ColumnSpan="4">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Просмотреть истрию" Name="ViewHistory" Click="ViewHistory_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10,8,10,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="800"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- ФИО + возраст -->
+                        <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Фамилия}" FontWeight="Bold" FontSize="20" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding Имя}"     FontWeight="Bold" FontSize="20" Margin="0,0,6,0"/>
+                            <TextBlock Text="{Binding Отчество}" FontWeight="Bold" FontSize="20" Margin="0,0,12,0"/>
+                            <TextBlock FontSize="16" Foreground="#6B7280" VerticalAlignment="Center">
+                                <Run Text="(Возраст: "/>
+                                <Run Text="{Binding Возраст, Mode=OneWay, StringFormat='{}{0} лет'}"/>
+                                <Run Text=" )"/>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <!-- Адрес -->
+                        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Margin="0,6,0,0">
+                            <TextBlock Text="г. "  FontSize="16" Foreground="#6B7280"/>
+                            <TextBlock Text="{Binding Город}" FontSize="16" Margin="0,0,12,0"/>
+                            <TextBlock Text="ул. " FontSize="16" Foreground="#6B7280"/>
+                            <TextBlock Text="{Binding Улица}" FontSize="16" Margin="0,0,12,0"/>
+                            <TextBlock Text="д. "  FontSize="16" Foreground="#6B7280"/>
+                            <TextBlock Text="{Binding Дом}"   FontSize="16"/>
+                        </StackPanel>
+
+                        <!-- ID -->
+                        <TextBlock Grid.Column="0" Grid.Row="2" Margin="0,6,0,0"
+                                   FontSize="13" Foreground="#9CA3AF">
+                            <Run Text="ID пациента: "/>
+                            <Run Text="{Binding ID_пациента}" FontWeight="SemiBold"/>
+                        </TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>
